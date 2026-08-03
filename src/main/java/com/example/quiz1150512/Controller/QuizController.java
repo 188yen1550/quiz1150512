@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.example.quiz1150512.Response.ApiResponse;
 import com.example.quiz1150512.Service.QuizService;
 import com.example.quiz1150512.entity.QuestionResponse;
+import com.example.quiz1150512.entity.dto.QuizDeleteRequest;
 import com.example.quiz1150512.entity.dto.QuizRequest;
 import com.example.quiz1150512.entity.dto.QuizResponseDto;
 
@@ -67,5 +68,16 @@ public class QuizController {
        List<QuestionResponse> questions = quizService.getQuestionsByQuizId(id);
        return ResponseEntity.ok(questions);
    }
+   /**
+    * 5. 批次刪除問卷
+    * POST /api/quiz/delete
+    */
+   @PostMapping("/delete")
+   public ResponseEntity<ApiResponse> deleteQuizzes(//
+   		@Valid @RequestBody QuizDeleteRequest request) {
+       quizService.deleteQuizzes(request.getQuizIds());
+       return ResponseEntity.ok(ApiResponse.success("Quizzes deleted successfully!!"));
+   }
+
 }
 

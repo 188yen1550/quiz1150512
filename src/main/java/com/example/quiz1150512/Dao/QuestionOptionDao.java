@@ -26,4 +26,11 @@ public interface QuestionOptionDao extends JpaRepository<QuestionOption, Long> {
 	@Query(value = "DELETE FROM question_option WHERE question_id "
 			+ " IN (SELECT id FROM question WHERE quiz_id = ?1)", nativeQuery = true)
 	public void deleteByQuizId(Long quizId);
+	// question_option 綁定 question_id，question_id 則是從 quiz_id 得到
+		@Modifying
+		@Query(value = "DELETE FROM question_option WHERE question_id IN ("//
+				+ " SELECT id FROM question WHERE quiz_id IN (:quizIds))", //
+				nativeQuery = true)
+		public void deleteByQuizIds(@Param("quizIds") List<Long> quizIds);
+
 }

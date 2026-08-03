@@ -152,4 +152,20 @@ public class QuizService {
 			}
 		}
 	}
+	/**
+	 * 5. 批次刪除問卷（包含對應的問題與選項）
+	 */
+	@Transactional(rollbackFor = Exception.class)
+	public void deleteQuizzes(List<Long> quizIds) {
+	    // 1. 刪除這些問卷對應的所有選項
+	    questionOptionDao.deleteByQuizIds(quizIds);
+	    // 2. 刪除這些問卷對應的所有問題
+	    questionDao.deleteByQuizIds(quizIds);
+	    // 3. 刪除問卷本體
+	    int deletedCount = quizDao.deleteByQuizIds(quizIds);
+	    if (deletedCount == 0) {
+	        throw new RuntimeException("No quizzes were found to delete!!");
+	    }
+	}
+
 }

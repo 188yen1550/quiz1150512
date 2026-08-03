@@ -24,5 +24,19 @@ public class ValidationMsg {
   
    public static final String OPTION_TEXT_REQUIRED = "Option text cannot be blank!!";
 	
+   public static final String QUIZ_IDS_REQUIRED = "Quiz IDs list cannot be empty!!";
+   
+// Fill Quiz Validation
+   public static final String QUIZ_ID_REQUIRED = "Quiz ID cannot be null!!";
+  
+   public static final String EMAIL_REQUIRED = "Email address cannot be blank!!";
+  
+   public static final String EMAIL_FORMAT_INVALID = "Invalid email format!!";
+  
+   public static final String QUESTION_ANSWERS_REQUIRED = "Question answers list cannot be empty!!";
+  
+   public static final String QUESTION_ID_REQUIRED = "Question ID cannot be null!!";
+
+
 }
 
